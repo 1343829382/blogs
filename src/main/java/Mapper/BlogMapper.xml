@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dao.BlogDao">
+
+    <resultMap id="blog" type="blog">
+        <result column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="date" property="date"/>
+        <result column="content" property="content"/>
+        <result column="cid" property="cid"/>
+        <result column="keyword" property="keyword"/>
+    </resultMap>
+
+    <select id="getAll" resultType="blog">
+        SELECT * from blog a  inner join category b on (a.cid = b.id) order by date desc 
+    </select>
+
+    <insert id="add">
+        insert into blog values(null,#{title},#{date},#{content},#{cid},#{keyword})
+    </insert>
+
+    <delete id="delete">
+        delete from blog where id = #{id}
+    </delete>
+
+    <select id="findById" resultType="blog">
+        select * from blog where id = #{id}
+    </select>
+
+    <update id="update">
+        update blog set title = #{title},
+                        date = #{date},
+                        content = #{content},
+                        cid = #{cid},
+                        keyword = #{keyword} where id = #{id}
+    </update>
+
+    <select id="count" resultType="int">
+        select count(*) from blog
+    </select>
+
+    <select id="like" resultType="blog">
+        select * from blog where title like concat('%',#{title},'%')
+    </select>
+
+
+    <select id="Latest" resultType="blog">
+        SELECT *from blog ORDER BY date DESC LIMIT 6
+    </select>
+
+</mapper>

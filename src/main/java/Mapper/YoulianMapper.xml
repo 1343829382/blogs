@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dao.YoulianDao">
+
+
+    <resultMap id="youlian" type="youlian">
+        <id column="id" property="id"/>
+        <result column="qq" property="qq"/>
+        <result column="name" property="name"/>
+        <result column="address" property="address"/>
+    </resultMap>
+
+    <select id="getAll" resultType="youlian">
+        select * from youlian
+    </select>
+
+    <select id="finYoulianId" resultType="youlian">
+        select * from youlian where id = #{id}
+    </select>
+
+    <insert id="Add">
+        insert into youlian values(null,#{qq},#{name},#{address})
+    </insert>
+
+    <update id="update">
+        update youlian set qq = #{qq},
+                            name = #{name},
+                            address = #{address} where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from youlian where id = #{id}
+    </delete>
+
+    <select id="count" resultType="int">
+        select count(*) from youlian
+    </select>
+</mapper>

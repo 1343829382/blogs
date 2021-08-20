@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dao.WebsiteDao">
+
+    <select id="getAll" resultType="website">
+        select * from website
+    </select>
+
+
+    <update id="update">
+        update website set title = #{title},
+                            antistop = #{antistop},
+                            relate = #{relate},
+                            qq = #{qq},
+                            publica = #{publica} where id = #{id}
+    </update>
+
+</mapper>
